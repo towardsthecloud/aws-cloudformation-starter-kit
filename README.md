@@ -1,4 +1,4 @@
-# [![AWS CloudFormation Starterkit header](./images/github-header-image.png)](https://towardsthecloud.com)
+# [![AWS CloudFormation Starterkit header](./images/github-title-banner.png)](https://towardsthecloud.com)
 
 # AWS CloudFormation Starterkit
 
@@ -30,7 +30,7 @@ This project requires **Python 3** and **pip** for managing dependencies.
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/dannysteenman/aws-cloudformation-starterkit.git
+git clone https://github.com/towardsthecloud/aws-cloudformation-starterkit.git
 cd aws-cloudformation-starterkit
 ```
 
@@ -182,11 +182,11 @@ Here are a couple of repositories containing CloudFormation templates that you c
 
 ## AWS CDK Starterkit
 
-> **Looking for a more modern approach to managing your AWS infrastructure?** Consider using the [AWS CDK Starterkit](https://github.com/dannysteenman/aws-cdk-starterkit) for a tailored experience that leverages the full power of AWS CDK with TypeScript.
+> **Looking for a more modern approach to managing your AWS infrastructure?** Consider using the [AWS CDK Starterkit](https://github.com/towardsthecloud/aws-cdk-starterkit) for a tailored experience that leverages the full power of AWS CDK with TypeScript.
 
 AWS CDK offers several advantages over traditional CloudFormation, such as improved developer experience through the use of familiar programming languages, higher abstraction with reusable constructs, and seamless integration with development workflows. These features make AWS CDK a highly recommended choice for more efficient and flexible infrastructure management.
 
-[Explore the AWS CDK Starterkit](https://github.com/dannysteenman/aws-cdk-starterkit) and start building your infrastructure with greater efficiency and flexibility today!
+[Explore the AWS CDK Starterkit](https://github.com/towardsthecloud/aws-cdk-starterkit) and start building your infrastructure with greater efficiency and flexibility today!
 
 ## Acknowledgements
 
@@ -196,6 +196,6 @@ Special thanks to the creators of [Rain](https://github.com/aws-cloudformation/r
 
 [Danny Steenman](https://towardsthecloud.com/about)
 
-[![](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dannysteenman)
+[![](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/towardsthecloud)
 [![](https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white)](https://twitter.com/dannysteenman)
-[![](https://img.shields.io/badge/GitHub-2b3137?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dannysteenman)
+[![](https://img.shields.io/badge/GitHub-2b3137?style=for-the-badge&logo=github&logoColor=white)](https://github.com/towardsthecloud)
