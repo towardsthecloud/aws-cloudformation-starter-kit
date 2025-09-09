@@ -14,7 +14,7 @@ prompt_for_environment() {
 }
 
 # Prompt the user for input
-read -p "Enter the GitHub repository name (e.g., dannysteenman/aws-cloudformation-starterkit): " repo_name
+read -p "Enter the GitHub repository name (e.g., dannysteenman/aws-cloudformation-starter-kit): " repo_name
 environment=$(prompt_for_environment)
 
 # Convert environment to uppercase

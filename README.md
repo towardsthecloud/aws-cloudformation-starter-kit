@@ -1,8 +1,8 @@
-# [![AWS CloudFormation Starterkit header](./images/github-title-banner.png)](https://towardsthecloud.com)
+# [![AWS CloudFormation Starter Kit header](./images/github-title-banner.png)](https://towardsthecloud.com)
 
-# AWS CloudFormation Starterkit
+# AWS CloudFormation Starter Kit
 
-Welcome to the AWS CloudFormation Starterkit, designed to streamline your infrastructure setup using CloudFormation templates and the Rain tool. This repository provides a structured approach to managing your AWS resources as code, ensuring efficient and reliable deployments.
+Welcome to the AWS CloudFormation Starter Kit, designed to streamline your infrastructure setup using CloudFormation templates and the Rain tool. This repository provides a structured approach to managing your AWS resources as code, ensuring efficient and reliable deployments.
 
 <!-- TIP-LIST:START -->
 > [!TIP]
@@ -72,8 +72,8 @@ This project requires **Python 3** and **pip** for managing dependencies.
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/towardsthecloud/aws-cloudformation-starterkit.git
-cd aws-cloudformation-starterkit
+git clone https://github.com/towardsthecloud/aws-cloudformation-starter-kit.git
+cd aws-cloudformation-starter-kit
 ```
 
 1. Install checkov, cfn-lint via pip & rain via homebrew:
@@ -181,13 +181,13 @@ Here are a couple of repositories containing CloudFormation templates that you c
 - [Widdix's AWS CloudFormation Templates](https://github.com/widdix/aws-cf-templates)
 - [AWS Quick Start Templates](https://github.com/aws-quickstart/quickstart-examples)
 
-## AWS CDK Starterkit
+## AWS CDK Starter Kit
 
-> **Looking for a more modern approach to managing your AWS infrastructure?** Consider using the [AWS CDK Starterkit](https://github.com/towardsthecloud/aws-cdk-starterkit) for a tailored experience that leverages the full power of AWS CDK with TypeScript.
+> **Looking for a more modern approach to managing your AWS infrastructure?** Consider using the [AWS CDK Starter Kit](https://github.com/towardsthecloud/aws-cdk-starter-kit) for a tailored experience that leverages the full power of AWS CDK with TypeScript.
 
 AWS CDK offers several advantages over traditional CloudFormation, such as improved developer experience through the use of familiar programming languages, higher abstraction with reusable constructs, and seamless integration with development workflows. These features make AWS CDK a highly recommended choice for more efficient and flexible infrastructure management.
 
-[Explore the AWS CDK Starterkit](https://github.com/towardsthecloud/aws-cdk-starterkit) and start building your infrastructure with greater efficiency and flexibility today!
+[Explore the AWS CDK Starter Kit](https://github.com/towardsthecloud/aws-cdk-starter-kit) and start building your infrastructure with greater efficiency and flexibility today!
 
 ## Acknowledgements
 
