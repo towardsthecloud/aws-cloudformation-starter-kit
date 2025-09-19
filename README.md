@@ -61,6 +61,9 @@ Welcome to the AWS CloudFormation Starter Kit, designed to streamline your infra
 
 ## Setup Guide
 
+> [!NOTE]
+> Looking for the full setup guide? Visit the detailed documentation at [towardsthecloud.com/docs/aws-cloudformation-starter-kit](https://towardsthecloud.com/docs/aws-cloudformation-starter-kit).
+
 This project requires **Python 3** and **pip** for managing dependencies.
 
 **To get started, follow these steps:**
