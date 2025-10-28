@@ -51,13 +51,11 @@ Welcome to the AWS CloudFormation Starter Kit, designed to streamline your infra
 
 ## Features
 
-- ⚡ **Quick Setup**: Get started with your infrastructure CI/CD in minutes by configuring a couple of repository variables.
-- 🌐 **Environment Flexibility**: Supports multiple environments (e.g., dev, staging, prod) via GitHub Actions workflows.
-- 🤖 **Automated Validation**: Use Checkov and cfn-lint for static analysis of your CloudFormation templates, ensuring compliance and security best practices.
-- 🏗️ **Modular Structure**: Organize your templates into logical components for better manageability and scalability.
-- 🔒 **Security Best Practices**: Incorporate OIDC for deploying cloudformation stacks in a secure manner in your AWS account via a GitHub Actions workflow.
-- 📜 **Comprehensive Documentation**: Detailed README and inline comments to guide you through setup and deployment processes.
-- 🚀 **CI/CD Integration**: Ready-to-use GitHub Actions workflows for automated deployments and validations.
+- ⚡ **One-Command Setup**: A single bootstrap script automatically generates environment-specific parameter files, configures GitHub Actions workflows, and sets up OIDC authentication—getting you production-ready in minutes.
+- 🔒 **Secure Deployments**: Deploy CloudFormation stacks securely via OIDC-authenticated GitHub Actions—no long-lived AWS credentials needed.
+- 🤖 **Pre-Commit Validation**: Templates are scanned with cfn-lint and Checkov before deployment to catch security issues and AWS best practice violations early.
+- 🌐 **Multi-Environment Support**: Separate parameter files for dev, staging, and production environments with isolated deployment workflows.
+- 🚀 **Automated CI/CD**: Push to main and watch your infrastructure deploy automatically with full validation and rollback capabilities.
 
 ## Setup Guide
 
@@ -68,14 +66,11 @@ This project requires **Python 3** and **pip** for managing dependencies.
 
 **To get started, follow these steps:**
 
-1. Clone this repository:
+1. Copy the starter kit:
 
-```bash
-git clone https://github.com/towardsthecloud/aws-cloudformation-starter-kit.git
-cd aws-cloudformation-starter-kit
-```
+Click the green ["Use this template"](https://github.com/new?template_name=aws-cloudformation-starter-kit&template_owner=towardsthecloud) button to create a new repository based on this starter kit.
 
-1. Install checkov, cfn-lint via pip & rain via homebrew:
+2. Install checkov, cfn-lint via pip & rain via homebrew:
 
 ```bash
 brew install rain
