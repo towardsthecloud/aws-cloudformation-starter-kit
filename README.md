@@ -57,18 +57,13 @@ Welcome to the AWS CloudFormation Starter Kit, designed to streamline your infra
 - 🌐 **Multi-Environment Support**: Separate parameter files for dev, staging, and production environments with isolated deployment workflows.
 - 🚀 **Automated CI/CD**: Push to main and watch your infrastructure deploy automatically with full validation and rollback capabilities.
 
-## Setup Guide
-
-> [!NOTE]
-> Looking for the full setup guide? Visit the detailed documentation at [towardsthecloud.com/docs/aws-cloudformation-starter-kit](https://towardsthecloud.com/docs/aws-cloudformation-starter-kit).
+## Quick Start
 
 This project requires **Python 3** and **pip** for managing dependencies.
 
 **To get started, follow these steps:**
 
-1. Copy the starter kit:
-
-Click the green ["Use this template"](https://github.com/new?template_name=aws-cloudformation-starter-kit&template_owner=towardsthecloud) button to create a new repository based on this starter kit.
+1. Click the green ["Use this template"](https://github.com/new?template_name=aws-cloudformation-starter-kit&template_owner=towardsthecloud) button to create a new repository based on this starter kit.
 
 2. Install checkov, cfn-lint via pip & rain via homebrew:
 
@@ -77,19 +72,19 @@ brew install rain
 pip install -r requirements.txt
 ```
 
-3. Run the `provision-repo.sh` script to generate the parameter and workflow files for your environment and in the repository with your AWS account information and the necessary variables for the OIDC provider.
+3. Run the `provision-repo.sh` script to generate the parameter and workflow files for your environment:
 
 ```bash
 ./scripts/provision-repo.sh
 ```
 
-4. Validate your CloudFormation templates with cfn-lint and checkov using the provided script:
+4. Validate your CloudFormation templates:
 
 ```bash
 ./scripts/validate.sh
 ```
 
-5. Deploy the oidc-provider CloudFormation stack using the `deploy-templates.sh` script:
+5. Deploy the oidc-provider CloudFormation stack:
 
 ```bash
 ./scripts/deploy-templates.sh
@@ -98,90 +93,21 @@ pip install -r requirements.txt
 > [!WARNING]
 > Make sure that you have the required IAM role or user setup in your aws config file. Use a tool such as [Granted](https://github.com/common-fate/granted) to make accessing your AWS account via the CLI easier and more secure.
 
-
-Now that you have successfully deployed the OIDC provider, you can use the following steps to configure your GitHub repository with the necessary variables, so that the CI/CD workflow can be used to deploy your CloudFormation stacks.
-
-6. Navigate to your repository's settings page on GitHub.
-   1. In the left sidebar, click on "Secrets and variables".
-   2. Click on "Actions" and then "New repository variable".
-   3. add the following variables:
-
-Note: Make sure to modify the values of the variables to match your specific account and region.
+6. Navigate to your repository's settings on GitHub and configure the Actions variables as shown below:
 
 ![GitHub Repository Variables](./images/actions-variables.png)
 
-You can now use the provided GitHub Actions workflows to deploy your CloudFormation stacks. Simply commit your changes to the main branch of your repository by adding new stacks to the `./templates` folder and the workflow will automatically deploy your stacks.
+You can now deploy your CloudFormation stacks by committing changes to the main branch.
 
-## Project Structure
+## Full Documentation
 
-This starter kit is organized to promote best practices in managing CloudFormation templates:
+For complete details on how this starter kit works, advanced configuration options, and best practices, visit the official documentation:
 
-```bash
-.
-├── .cfnlintrc
-├── .checkov.yml
-├── .github
-│  ├── pull-request-template.md
-│  └── workflows
-      ├── cfn-lint-scan.yml
-│     ├── checkov-scan.yml
-│     └── cloudformation-deploy-test.yml
-├── LICENSE
-├── parameters
-│  ├── production
-│  │  └── oidc-provider.yml
-│  └── test
-│     └── oidc-provider.yml
-├── README.md
-├── requirements.txt
-├── scripts
-│  ├── provision-repo.sh
-│  ├── deploy-templates.sh
-│  └── validate-templates.sh
-└── templates
-   └── oidc-provider.yml
-```
-
-### Key Components
-
-- `parameters/`: This directory contains parameter files for different environments, such as `production` and `test`. Each subdirectory corresponds to an environment and contains YAML files that define parameters specific to that environment. It's important to ensure that the filename of each parameter file matches the corresponding template name in the `templates/` directory. This naming convention allows scripts to correctly associate parameters with their respective templates during deployment.
-- `.cfnlintrc`: This file is the configuration for cfn-lint, a tool used to validate CloudFormation templates against AWS best practices and syntax rules.
-- `.checkov.yml`: This configuration file is used by Checkov, a static analysis tool for infrastructure as code. It defines the rules and policies that Checkov will enforce when scanning your CloudFormation templates.
-- `.github/workflows/`: Contains GitHub Actions workflows for CI/CD.
-- - `cfn-lint-scan.yml`: Automates the validation of CloudFormation templates using cfn-lint to ensure compliance with AWS best practices and syntax rules.
-- - `checkov-scan.yml`: Automates the validation of CloudFormation templates using Checkov to ensure compliance and security.
-- - `cloudformation-deploy-test.yml`: Manages the deployment of CloudFormation stacks for testing purposes.
-- `scripts/`: Contains shell scripts for managing templates.
-- - `deploy-templates.sh`: Automates the deployment of CloudFormation templates using the Rain tool.
-- - `provision-repo.sh`: Generates the parameter and workflow files for your environment and in the repository with your AWS account information and the necessary variables for the OIDC provider.
-- - `validate-templates.sh`: Validates CloudFormation templates using Checkov to ensure they adhere to best practices.
-- `templates/`: Stores CloudFormation templates.
-- - `oidc-provider.yml`: Example template for setting up an OpenID Connect provider in AWS.
-
-## CI/CD Integration
-
-This starter kit includes GitHub Actions workflows for automated validation and deployment. Customize the workflows in the `.github/workflows/` directory to suit your CI/CD needs.
-
-Checkov Scan: Automatically runs Checkov on your templates to catch security and compliance issues before deployment.
-CloudFormation Deploy Test: Deploys your CloudFormation stacks in a test environment to ensure everything works as expected.
-
-## Start adding CloudFormation templates
-
-To start adding CloudFormation templates, simply add new files to the [`./templates`](./templates) directory and commit them to the `main` branch of your repository to trigger the CI/CD workflow. The workflow will automatically deploy your stacks using the provided parameter files.
-
-Here are a couple of repositories containing CloudFormation templates that you can use as a starting point:
-
-- [Official AWS CloudFormation Templates](https://github.com/aws-cloudformation/aws-cloudformation-templates)
-- [Widdix's AWS CloudFormation Templates](https://github.com/widdix/aws-cf-templates)
-- [AWS Quick Start Templates](https://github.com/aws-quickstart/quickstart-examples)
+**[View Full Documentation →](https://towardsthecloud.com/docs/aws-cloudformation-starter-kit)**
 
 ## AWS CDK Starter Kit
 
 > **Looking for a more modern approach to managing your AWS infrastructure?** Consider using the [AWS CDK Starter Kit](https://github.com/towardsthecloud/aws-cdk-starter-kit) for a tailored experience that leverages the full power of AWS CDK with TypeScript.
-
-AWS CDK offers several advantages over traditional CloudFormation, such as improved developer experience through the use of familiar programming languages, higher abstraction with reusable constructs, and seamless integration with development workflows. These features make AWS CDK a highly recommended choice for more efficient and flexible infrastructure management.
-
-[Explore the AWS CDK Starter Kit](https://github.com/towardsthecloud/aws-cdk-starter-kit) and start building your infrastructure with greater efficiency and flexibility today!
 
 ## Acknowledgements
 
