@@ -4,6 +4,16 @@
 
 Welcome to the AWS CloudFormation Starter Kit, designed to streamline your infrastructure setup using CloudFormation templates and the Rain tool. This repository provides a structured approach to managing your AWS resources as code, ensuring efficient and reliable deployments.
 
+## 🚀 Features
+
+- ⚡ **One-Command Setup**: Single bootstrap script automatically sets up your infrastructure pipeline
+  - Generates environment-specific parameter files
+  - Provisions OIDC provider for secure keyless authentication
+  - Auto-generates GitHub Actions workflows for CI/CD
+- 🔒 **Secure Deployments**: Deploy stacks via OIDC-authenticated GitHub Actions—no long-lived IAM credentials needed
+- 🤖 **Pre-Commit Validation**: cfn-lint and Checkov catch issues before deployment
+- 🌐 **Multi-Environment Support**: Separate parameter files for dev, staging, and production with isolated workflows
+
 <!-- TIP-LIST:START -->
 > [!TIP]
 > **Towards the Cloud runs the AWS foundation for modern product teams. This means your team ships faster, slashes AWS spend, and stay audit-ready without having to hire a platform squad.**
@@ -48,14 +58,6 @@ Welcome to the AWS CloudFormation Starter Kit, designed to streamline your infra
 >
 > </details>
 <!-- TIP-LIST:END -->
-
-## Features
-
-- ⚡ **One-Command Setup**: A single bootstrap script automatically generates environment-specific parameter files, configures GitHub Actions workflows, and sets up OIDC authentication—getting you production-ready in minutes.
-- 🔒 **Secure Deployments**: Deploy CloudFormation stacks securely via OIDC-authenticated GitHub Actions—no long-lived AWS credentials needed.
-- 🤖 **Pre-Commit Validation**: Templates are scanned with cfn-lint and Checkov before deployment to catch security issues and AWS best practice violations early.
-- 🌐 **Multi-Environment Support**: Separate parameter files for dev, staging, and production environments with isolated deployment workflows.
-- 🚀 **Automated CI/CD**: Push to main and watch your infrastructure deploy automatically with full validation and rollback capabilities.
 
 ## Quick Start
 
