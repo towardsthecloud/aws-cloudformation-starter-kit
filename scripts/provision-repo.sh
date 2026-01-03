@@ -64,7 +64,7 @@ jobs:
         with:
           config_file: .checkov.yml
       - name: Deploy CloudFormation templates
-        run: ./scripts/deploy-templates.sh
+        run: ./scripts/deploy-templates.sh -e ${environment}
 EOL
 
 # Create the parameters directory if it does not exist
