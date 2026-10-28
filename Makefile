@@ -76,7 +76,7 @@ diff: $(addprefix diff-,$(STACKS)) ## Preview the changes a deploy would make to
 
 diff-%: preflight ## Preview the changes a deploy would make to one stack
 	@echo "==> Changes for $*"
-	@set -e; $(call load_config,$*); \
+	@set -e; $(call load_config,$*) || exit 1; \
 	output="$$($(call deploy_cmd,$*) --no-execute-changeset)"; \
 	change_set="$$(sed -n 's/.*--change-set-name //p' <<<"$$output")"; \
 	if [ -z "$$change_set" ]; then echo "No changes."; exit 0; fi; \
@@ -108,7 +108,8 @@ init: ## Create parameters/<env> and its deploy workflow (ENVIRONMENT=<env>, opt
 	@echo '$(REPO)' | grep -Eq '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$$' || { echo "Error: could not detect the GitHub repository. Set REPO=owner/repo" >&2; exit 1; }
 	@mkdir -p $(PARAMETERS_DIR)
 	@file=$(PARAMETERS_DIR)/oidc-provider.yml; \
-	if [ -e $$file ]; then echo "Skipped $$file: already exists"; else printf '%s\n' "$$OIDC_PARAMETERS" > $$file && echo "Created $$file"; fi
+	if [ -e $$file ]; then yq -i '.Parameters.SubjectClaimFilters = "repo:$(REPO):*"' $$file && echo "Updated $$file to trust $(REPO)"; \
+	else printf '%s\n' "$$OIDC_PARAMETERS" > $$file && echo "Created $$file"; fi
 	@file=.github/workflows/cloudformation-deploy-$(ENVIRONMENT).yml; \
 	if [ -e $$file ]; then echo "Skipped $$file: already exists"; else printf '%s\n' "$$DEPLOY_WORKFLOW" > $$file && echo "Created $$file"; fi
 	@echo
