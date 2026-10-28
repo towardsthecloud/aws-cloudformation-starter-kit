@@ -1,0 +1,45 @@
+name: Deploy CloudFormation stacks
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: Folder in parameters/ to deploy
+        required: true
+        type: string
+      aws-account-id:
+        description: AWS account to deploy to
+        required: true
+        type: string
+
+concurrency:
+  group: cloudformation-deploy-${{ inputs.environment }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      ENVIRONMENT: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Lint templates
+        run: make lint
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ inputs.aws-account-id }}:role/GitHubActionsServiceRole
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Deploy stacks
+        run: make deploy
