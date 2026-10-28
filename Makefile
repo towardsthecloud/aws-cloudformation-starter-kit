@@ -29,7 +29,7 @@ param_file = $(firstword $(wildcard $(addprefix $(PARAMETERS_DIR)/$(1),.yml .yam
 CONFIG_FLAGS := [(.Parameters // {} | to_entries | map(.key + "=" + (.value | tostring) | @sh) | select(length > 0) | ["--parameter-overrides"] + .), (.Tags // {} | to_entries | map(.key + "=" + (.value | tostring) | @sh) | select(length > 0) | ["--tags"] + .)] | flatten | join(" ")
 
 # Shell snippets used by the stack recipes below.
-load_config = flags="$$($(if $(call param_file,$(1)),yq '$(CONFIG_FLAGS)' $(call param_file,$(1))))" && eval "set -- $$flags"
+load_config = flags="$$($(if $(call param_file,$(1)),yq -o=yaml '$(CONFIG_FLAGS)' $(call param_file,$(1))))" && eval "set -- $$flags"
 deploy_cmd = aws cloudformation deploy --template-file $(call template_file,$(1)) --stack-name $(1) --capabilities $(CAPABILITIES) $(if $(S3_BUCKET),--s3-bucket $(S3_BUCKET)) --no-fail-on-empty-changeset "$$@"
 stack_status = aws cloudformation describe-stacks --stack-name $(1) --query 'Stacks[0].StackStatus' --output text 2>/dev/null || true
 failed_events = echo "Recent failed events for $(1):" >&2; aws cloudformation describe-stack-events --stack-name $(1) --query "StackEvents[?ends_with(ResourceStatus, 'FAILED')] | [:10].[LogicalResourceId, ResourceStatus, ResourceStatusReason]" --output table >&2 || true
