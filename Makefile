@@ -83,7 +83,9 @@ diff-%: preflight ## Preview the changes a deploy would make to one stack
 	aws cloudformation describe-change-set --change-set-name "$$change_set" --output table \
 		--query 'Changes[].ResourceChange.{Action: Action, LogicalId: LogicalResourceId, Type: ResourceType, Replacement: Replacement}'; \
 	aws cloudformation delete-change-set --change-set-name "$$change_set"; \
-	if [ "$$($(call stack_status,$*))" = REVIEW_IN_PROGRESS ]; then aws cloudformation delete-stack --stack-name $*; fi
+	if [ "$$($(call stack_status,$*))" = REVIEW_IN_PROGRESS ]; then \
+		aws cloudformation delete-stack --stack-name $* && aws cloudformation wait stack-delete-complete --stack-name $*; \
+	fi
 
 status: ## Show the status of all stacks in the current AWS account
 	@for stack in $(STACKS); do \
