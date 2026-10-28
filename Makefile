@@ -4,7 +4,8 @@ SHELL := /bin/bash
 .DEFAULT_GOAL := help
 
 # Environment to work on: a folder in parameters/ (for example `make deploy ENVIRONMENT=test`).
-ENVIRONMENT ?=
+# Only set on the command line, so an ENVIRONMENT exported in your shell never picks the target.
+ENVIRONMENT :=
 TEMPLATE_FILES := $(wildcard templates/*.yml templates/*.yaml templates/*.json)
 # Stacks to act on. Defaults to every template in templates/; override with STACKS="stack-a stack-b".
 STACKS ?= $(sort $(basename $(notdir $(TEMPLATE_FILES))))
@@ -16,6 +17,8 @@ endif
 PARAMETERS_DIR := parameters/$(ENVIRONMENT)
 ACCOUNT_ID_VARIABLE := $(shell echo '$(ENVIRONMENT)' | tr 'a-z-' 'A-Z_')_AWS_ACCOUNT_ID
 CAPABILITIES := CAPABILITY_IAM CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND
+# S3 bucket for templates larger than 51,200 bytes, which CloudFormation can't accept inline.
+S3_BUCKET ?=
 VENV := .venv
 
 # A stack is named after its template file, so templates/network.yml deploys the stack "network".
@@ -27,7 +30,7 @@ CONFIG_FLAGS := [(.Parameters // {} | to_entries | map(.key + "=" + (.value | to
 
 # Shell snippets used by the stack recipes below.
 load_config = flags="$$($(if $(call param_file,$(1)),yq '$(CONFIG_FLAGS)' $(call param_file,$(1))))" && eval "set -- $$flags"
-deploy_cmd = aws cloudformation deploy --template-file $(call template_file,$(1)) --stack-name $(1) --capabilities $(CAPABILITIES) --no-fail-on-empty-changeset "$$@"
+deploy_cmd = aws cloudformation deploy --template-file $(call template_file,$(1)) --stack-name $(1) --capabilities $(CAPABILITIES) $(if $(S3_BUCKET),--s3-bucket $(S3_BUCKET)) --no-fail-on-empty-changeset "$$@"
 stack_status = aws cloudformation describe-stacks --stack-name $(1) --query 'Stacks[0].StackStatus' --output text 2>/dev/null || true
 failed_events = echo "Recent failed events for $(1):" >&2; aws cloudformation describe-stack-events --stack-name $(1) --query "StackEvents[?ends_with(ResourceStatus, 'FAILED')] | [:10].[LogicalResourceId, ResourceStatus, ResourceStatusReason]" --output table >&2 || true
 
@@ -136,7 +139,6 @@ name: Deploy $(ENVIRONMENT)
 on:
   push:
     branches: [main]
-  workflow_dispatch:
 
 jobs:
   deploy:

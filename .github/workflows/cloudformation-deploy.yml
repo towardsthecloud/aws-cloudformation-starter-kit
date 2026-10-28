@@ -42,4 +42,4 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Deploy stacks
-        run: make deploy
+        run: make deploy ENVIRONMENT="$ENVIRONMENT"

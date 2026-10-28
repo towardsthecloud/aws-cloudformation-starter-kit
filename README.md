@@ -64,7 +64,7 @@ Every push to `main` now lints and deploys all stacks to the test account. Pull 
 
 ### Commands
 
-Run `make help` for the full list. Commands that deploy or preview need `ENVIRONMENT`; add `STACKS="a b"` to limit them to some stacks.
+Run `make help` for the full list. Commands that deploy or preview need `ENVIRONMENT`; add `STACKS="a b"` to limit them to some stacks. Templates larger than 51,200 bytes also need `S3_BUCKET=<bucket>` to upload them.
 
 | Command                                | What it does                                                                  |
 | -------------------------------------- | ----------------------------------------------------------------------------- |
