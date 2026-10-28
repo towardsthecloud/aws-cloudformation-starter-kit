@@ -1,4 +1,0 @@
-templates:
-  - templates/*.yml
-ignore_templates:
-  - codebuild.yaml
